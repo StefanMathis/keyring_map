@@ -21,6 +21,10 @@ allocations.
 
 The full API documentation is available at <https://docs.rs/keyring_map/0.1.0/keyring_map>.
 
+> **Feedback welcome!**  
+> Found a bug, missing docs, or have a feature request?  
+> Please open an issue on [GitHub](https://github.com/StefanMathis/stem_wire.git).
+
 This crate offers [`KeyringMap`], a hash map based on [`IndexMap`] which allows
 specifying multiple keys per value. It offers the functionality one expects from
 a regular hash map, such as **O(1)** lookup, insertion, removal and iteration
@@ -203,7 +207,7 @@ assert!(aliases.is_empty());
 One of the core features of [`KeyringMap`] is its (de)serialization model, which
 hides the complex implementation behind an intuitive representation which is
 very similar to that of a normal hash map: A list of `keys`-`value` pairs, where
-the `keys` itself is a list containing the individual keys.
+`keys` itself is a list of the individual keys.
 
 ```rust
 use indoc;

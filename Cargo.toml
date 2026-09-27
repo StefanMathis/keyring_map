@@ -1,6 +1,6 @@
 [package]
 name = "keyring_map"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "A hash map with multiple keys per value using a ring structure to minimize allocations."
 readme = "README.md"
@@ -24,7 +24,7 @@ doc-images = ["dep:embed-doc-image"]
 
 [dev-dependencies]
 indoc = "1.0"
-serde_yaml = "0.8"
+yaml_serde = "0.10.6"
 keyring_map = { path = ".", features = ["serde", "rayon"] } # Solution from https://stackoverflow.com/questions/68618789/is-it-possible-to-enable-a-rust-feature-only-in-test to enable feature during integration test
 
 # Benchmarking

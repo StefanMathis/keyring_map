@@ -188,7 +188,7 @@ very similar to that of a normal hash map: A list of `keys`-`value` pairs, where
 
 ```rust
 use indoc;
-use serde_yaml;
+use yaml_serde;
 use keyring_map::KeyringMap;
 
 let str = indoc::indoc! {"
@@ -200,7 +200,7 @@ let str = indoc::indoc! {"
   value: f
 "};
 
-let map: KeyringMap<char, String> = serde_yaml::from_str(&str).expect("valid input");
+let map: KeyringMap<char, String> = yaml_serde::from_str(&str).expect("valid input");
 assert_eq!(map.num_keys(), 6);
 assert_eq!(map.num_values(), 3);
 

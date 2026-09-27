@@ -12,10 +12,10 @@ fn test_serialize_and_deserialize() {
     assert!(map.insert(2, 'b').is_none());
     assert!(map.alias(&2, 4).is_ok());
 
-    let string: String = serde_yaml::to_string(&map).expect("serialization failed");
+    let string: String = yaml_serde::to_string(&map).expect("serialization failed");
 
     let map: KeyringMap<usize, char> =
-        serde_yaml::from_str(&string).expect("deserialization failed");
+        yaml_serde::from_str(&string).expect("deserialization failed");
 
     // Check the properties of the deserialized map
     assert!(map.get(&0) == Some(&'a'));
@@ -37,7 +37,7 @@ fn test_deserialize_success() {
         "};
 
         let map: KeyringMap<usize, char> =
-            serde_yaml::from_str(yaml).expect("deserialization failed");
+            yaml_serde::from_str(yaml).expect("deserialization failed");
 
         // Check the properties of the deserialized map
         assert!(map.get(&0) == Some(&'a'));
@@ -58,7 +58,7 @@ fn test_deserialize_failure() {
           value: a
         "};
 
-        let res = serde_yaml::from_str::<KeyringMap<usize, char>>(yaml);
+        let res = yaml_serde::from_str::<KeyringMap<usize, char>>(yaml);
         assert!(res.is_err());
     }
     {
@@ -71,7 +71,7 @@ fn test_deserialize_failure() {
           value: b
         "};
 
-        let res = serde_yaml::from_str::<KeyringMap<usize, char>>(yaml);
+        let res = yaml_serde::from_str::<KeyringMap<usize, char>>(yaml);
         assert!(res.is_err());
     }
 }

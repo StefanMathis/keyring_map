@@ -203,7 +203,7 @@ possible to write a serialized [`KeyringMap`] just as easy as a normal hash map:
 
 ```
 use indoc;
-use serde_yaml;
+use yaml_serde;
 use keyring_map::KeyringMap;
 
 let str = indoc::indoc! {"
@@ -215,7 +215,7 @@ let str = indoc::indoc! {"
   value: f
 "};
 
-let map: KeyringMap<char, String> = serde_yaml::from_str(&str).expect("valid input");
+let map: KeyringMap<char, String> = yaml_serde::from_str(&str).expect("valid input");
 assert_eq!(map.num_keys(), 6);
 assert_eq!(map.num_values(), 3);
 ```
@@ -1386,12 +1386,13 @@ impl std::fmt::Display for InsertionErrorType {
     }
 }
 
+impl std::error::Error for InsertionErrorType {}
+
 /**
 Error type for failed insertion attempts. This struct is produced by some
 insertion methods of [`KeyringMap`] like [`KeyringMap::insert_many`] or
 [`KeyringMap::alias_many`].
  */
-#[derive(Debug)]
 pub struct InsertionError<T> {
     /// Input to the insertion method (value and / or keys)
     pub input: T,
@@ -1399,8 +1400,18 @@ pub struct InsertionError<T> {
     pub error_type: InsertionErrorType,
 }
 
+impl<T> std::fmt::Debug for InsertionError<T> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("InsertionError")
+            .field("error_type", &self.error_type)
+            .finish()
+    }
+}
+
 impl<T> std::fmt::Display for InsertionError<T> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         return self.error_type.fmt(f);
     }
 }
+
+impl<T> std::error::Error for InsertionError<T> {}

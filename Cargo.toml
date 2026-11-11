@@ -25,7 +25,7 @@ doc-images = ["dep:embed-doc-image"]
 [dev-dependencies]
 indoc = "1.0"
 yaml_serde = "0.10.6"
-keyring_map = { path = ".", features = ["serde", "rayon"] } # Solution from https://stackoverflow.com/questions/68618789/is-it-possible-to-enable-a-rust-feature-only-in-test to enable feature during integration test
+keyring_map = { path = ".", features = ["serde", "rayon"] }
 
 # Benchmarking
 criterion = "0.5.1"

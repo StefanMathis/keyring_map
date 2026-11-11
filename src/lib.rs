@@ -1097,7 +1097,7 @@ impl<K: Eq + Hash, V, S: BuildHasher + Default> KeyringMap<K, V, S> {
     assert_eq!(values, vec!["abc", "xyz"]);
     ```
      */
-    pub fn into_values(self) -> impl Iterator<Item = V> {
+    pub fn into_values(self) -> IntoValues<V> {
         return self.values.into_iter().map(|(_, value)| value);
     }
 
@@ -1415,3 +1415,6 @@ impl<T> std::fmt::Display for InsertionError<T> {
 }
 
 impl<T> std::error::Error for InsertionError<T> {}
+
+/// An alias type for the returned iterator of [`KeyringMap::into_values`].
+pub type IntoValues<V> = std::iter::Map<slab::IntoIter<V>, fn((usize, V)) -> V>;

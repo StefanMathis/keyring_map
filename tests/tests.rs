@@ -587,3 +587,21 @@ fn test_values() {
         }
     }
 }
+
+#[test]
+fn test_into_values_for_into_iter() {
+    // This test just checks successful compilation
+    struct Wrapper(KeyringMap<usize, usize>);
+
+    impl IntoIterator for Wrapper {
+        type Item = usize;
+
+        type IntoIter = keyring_map::IntoValues<usize>;
+
+        fn into_iter(self) -> Self::IntoIter {
+            self.0.into_values()
+        }
+    }
+
+    let _ = Wrapper(KeyringMap::new());
+}

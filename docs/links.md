@@ -15,7 +15,7 @@ modify the components. -->
 [`KeyringMap::iter_full`]: https://docs.rs/keyring_map/{{VERSION}}/keyring_map/struct.KeyringMap.html#method.iter_full
 
 [![Documentation](https://docs.rs/keyring_map/badge.svg)](https://docs.rs/keyring_map)
-[![Rust CI](https://github.com/StefanMathis/keyring_map/actions/workflows/ci.yml/badge.svg)](https://github.com/StefanMathis/keyring_map/actions/workflows/ci.yml)
+[![CI](https://github.com/StefanMathis/keyring_map/actions/workflows/ci.yml/badge.svg)](https://github.com/StefanMathis/keyring_map/actions/workflows/ci.yml)
 
 A hash map with multiple keys per value using a ring structure to minimize
 allocations.
